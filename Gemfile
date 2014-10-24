@@ -61,3 +61,4 @@ group :development do
   gem 'pry'
 end
 gem 'clockwork', :require => false
+gem 'rails_admin', github: 'sferik/rails_admin'
