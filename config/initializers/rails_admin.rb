@@ -19,16 +19,26 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      only [Exchange]
+    end
     export
     bulk_delete
-    show
-    edit
-    delete
+    show do
+      only []
+    end
+    edit do
+      only [Exchange]
+    end
+    delete do
+      only [Exchange]
+    end
     show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
   end
+
+  config.excluded_models = %w(BalanceChange TradePair)
 end

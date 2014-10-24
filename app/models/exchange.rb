@@ -2,6 +2,22 @@ class Exchange < ActiveRecord::Base
   has_many :trade_pairs
   has_many :currencies
 
+  rails_admin do
+    weight -1
+    list do
+      field :id
+      field :name
+      field :enable_updates
+    end
+    edit do
+      field :name
+      field :api_key
+      field :api_secret
+      field :username
+      field :enable_updates
+    end
+  end
+
   def self.run_updates
     where(enable_updates: true).pluck(:id).each do |ex|
       ExchangeUpdater.perform_async(ex)

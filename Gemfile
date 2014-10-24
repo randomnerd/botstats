@@ -62,3 +62,4 @@ group :development do
 end
 gem 'clockwork', :require => false
 gem 'rails_admin', github: 'sferik/rails_admin'
+gem 'quiet_assets'
