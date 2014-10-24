@@ -101,6 +101,7 @@ GEM
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nokogiri (1.6.3.1-java)
+    pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   jquery-rails
   jruby-openssl
   nokogiri
+  pg
   pry
   rails (= 4.1.6)
   sass-rails (~> 4.0.3)
