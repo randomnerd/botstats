@@ -6,7 +6,9 @@
 
 # Ignore bundler config.
 /.bundle
+/public/assets
 .ruby-version
+.rbenv-vars
 /config/database.yml
 # Ignore the default SQLite database.
 /db/*.sqlite3
