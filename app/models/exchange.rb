@@ -52,7 +52,11 @@ class Exchange < ActiveRecord::Base
       points = changes.map do |bc|
         [ bc.created_at.to_i * 1000, bc.new_balance.to_f / 10 ** 8 ]
       end
-      series << { name: curr.name, data: points }
+      series << {
+        name: curr.name.upcase,
+        data: points,
+        visible: curr.name.upcase == 'BTC'
+      }
     end
     series
   end
