@@ -3,8 +3,30 @@
 
 <script>
   $(document).ready(function() {
+    // var src = new DevExpress.data.DataSource({
+    //   load: function (loadOptions) {
+    //     var d = new $.Deferred();
+    //     $.getJSON("/api/v1/balance_changes?exchange_id=<%=exchange.id%>").done(function (data) {
+    //       d.resolve(data);
+    //     });
+    //     return d.promise();
+    //   }
+    // });
+    // $('#chart<%= exchange.id %>').dxChart({
+    //   title: '<%= exchange.name %>',
+    //   dataSource: src,
+    //   commonSeriesSettings: { argumentField: 'time', valueField: 'balance'},
+    //   argumentAxis: { argumentType: 'datetime' },
+    //   seriesTemplate: {
+    //     nameField: 'name',
+    //     customizeSeries: function (value) {
+    //       if (value === 'BTC' || value === 'BTC-MEAN') { return {} };
+    //       return { visible: false };
+    //     }
+    //   }
+    // });
     $('#chart<%= exchange.id %>').highcharts({
-      chart: { type: 'spline', height: 500 },
+      chart: { type: 'spline', height: 500, backgroundColor: 'transparent' },
       title: { text: '<%= exchange.name %>' },
       xAxis: { type: 'datetime' },
       yAxis: { min: 0 },

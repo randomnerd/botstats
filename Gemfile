@@ -30,9 +30,9 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+# gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
@@ -60,9 +60,11 @@ group :development do
   gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
   gem 'sqlite3', platform: :ruby
   gem 'pry'
-  gem 'bullet'
+  #gem 'bullet'
 end
 gem 'clockwork', :require => false
 gem 'rails_admin', github: 'sferik/rails_admin'
 gem 'quiet_assets'
 gem 'dalli'
+gem 'inherited_resources'
+gem 'rabl'

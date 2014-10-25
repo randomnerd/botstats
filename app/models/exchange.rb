@@ -23,6 +23,12 @@ class Exchange < ActiveRecord::Base
     where(enable_updates: true).pluck(:id).each do |ex|
       ExchangeUpdater.perform_async(ex)
     end
+    mean = Currency.find_or_create_by(name: 'BTC-GLOBAL')
+    mean.balance ||= 0
+    new_mean = Currency.where(name: 'BTC-MEAN').sum(:balance)
+    return if mean.balance == new_mean
+    mean.balance_changes.create(old_balance: mean.balance, new_balance: new_mean)
+    mean.update_attribute :balance, new_mean
   end
 
   def adapter
@@ -53,6 +59,24 @@ class Exchange < ActiveRecord::Base
   end
 
   def changes_chart_data
+    series = []
+    data = currencies.includes(:balance_changes).merge(BalanceChange.recent)
+    data.order(:name).each do |curr|
+      changes = curr.balance_changes
+      points = changes.map do |bc|
+        [ bc.created_at.to_i * 1000, bc.new_balance.to_f / 10 ** 8 ]
+      end
+      series << {
+        name: curr.name.upcase,
+        data: points,
+        visible: curr.name.upcase == 'BTC-MEAN' || curr.name.upcase == 'BTC'
+      }
+    end
+    series
+  end
+
+  def changes_chart_data_new
+    source = []
     series = []
     data = currencies.includes(:balance_changes).merge(BalanceChange.recent)
     data.order(:name).each do |curr|

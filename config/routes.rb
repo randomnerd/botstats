@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/hq/sidekiq'
   mount RailsAdmin::Engine => '/hq', as: 'rails_admin'
-  namespace :api, defaults: { format: 'json' } do
-    namespace :v2 do
 
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :balance_changes do
+        collection { get :chart_data }
+      end
     end
   end
 

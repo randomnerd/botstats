@@ -1,3 +1,12 @@
+<div class="xe-widget xe-counter" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
+  <div class="xe-icon">
+    <i class="linecons-cloud"></i>
+  </div>
+  <div class="xe-label">
+    <strong class="num"><%= @global_mean %> BTC</strong>
+    <span>Total mean balance</span>
+  </div>
+</div>
 <% Exchange.order(:name).each do |exchange| %>
   <%= render partial: 'chart', locals: { exchange: exchange } %>
 <% end %>
