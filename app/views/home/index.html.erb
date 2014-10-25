@@ -1,0 +1,13 @@
+<div id="chart"></div>
+
+<script>
+  $(document).ready(function() {
+    $('#chart').highcharts({
+      chart: { type: 'spline' },
+      title: { text: 'balance changes' },
+      xAxis: { type: 'datetime' },
+      yAxis: { min: 0 },
+      series: <%= raw @series.to_json %>
+    });
+  });
+</script>

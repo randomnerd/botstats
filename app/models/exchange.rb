@@ -1,6 +1,7 @@
 class Exchange < ActiveRecord::Base
   has_many :trade_pairs
   has_many :currencies
+  has_many :balance_changes, through: :currencies
 
   rails_admin do
     weight -1
