@@ -34,4 +34,21 @@ class ExchangeAdapters::Btce < ExchangeAdapters::Base
   def get_orders
     @client.order_list['return']
   end
+
+  def get_rate(curr)
+    return 1 if curr.upcase == 'BTC'
+    if curr.upcase == 'USD' || curr.upcase == 'RUR'
+      ticker = Btce::Ticker.new "btc_#{curr.downcase}"
+      urate = ticker.try(:last).try(:to_f)
+      rate = 1/urate
+    else
+      ticker = Btce::Ticker.new "#{curr.downcase}_btc"
+      rate = ticker.try(:last).try(:to_f)
+    end
+    rate || 0
+  rescue
+    puts curr
+    return 0
+  end
+
 end

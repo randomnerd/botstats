@@ -12,6 +12,17 @@ class Currency < ActiveRecord::Base
           "%.8f" % (value.to_f / 10 ** 8)
         end
       end
+      field :rate do
+        formatted_value do
+          "%.8f" % (value.to_f / 10 ** 8)
+        end
+      end
+      field :btc_balance do
+        formatted_value do
+          "%.8f" % (value.to_f / 10 ** 8)
+        end
+      end
+      field :updated_at
     end
   end
 

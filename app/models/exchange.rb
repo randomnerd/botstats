@@ -41,6 +41,13 @@ class Exchange < ActiveRecord::Base
     adapter.update_balances
   end
 
+  def update_rates
+    currencies.where('balance > 0').where('name != ?', 'BTC-MEAN').each do |curr|
+      rate = adapter.get_rate(curr.name) * 10 ** 8
+      curr.update_attribute :rate, rate.round
+    end
+  end
+
   def fill_currencies(force = false)
     adapter.fill_currencies(force)
   end
@@ -56,7 +63,7 @@ class Exchange < ActiveRecord::Base
       series << {
         name: curr.name.upcase,
         data: points,
-        visible: curr.name.upcase == 'BTC'
+        visible: curr.name.upcase == 'BTC-MEAN' || curr.name.upcase == 'BTC'
       }
     end
     series

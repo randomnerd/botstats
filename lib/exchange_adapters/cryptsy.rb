@@ -18,4 +18,15 @@ class ExchangeAdapters::Cryptsy < ExchangeAdapters::Base
       }
     end
   end
+
+  def get_rate(curr)
+    return 1 if curr.upcase == 'BTC'
+    if curr.upcase == 'USD'
+      urate = @client.market_by_pair('BTC', 'USD').try(:[], 'last_trade').try(:to_f)
+      rate = 1/urate
+    else
+      rate = @client.market_by_pair(curr.upcase, 'BTC').try(:[], 'last_trade').try(:to_f)
+    end
+    rate || 0
+  end
 end

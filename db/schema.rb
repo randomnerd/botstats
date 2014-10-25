@@ -11,24 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025035957) do
+ActiveRecord::Schema.define(version: 20141025061544) do
 
   create_table "balance_changes", force: true do |t|
-    t.integer  "currency_id"
-    t.integer  "old_balance", limit: 8
-    t.integer  "new_balance", limit: 8
-    t.datetime "created_at"
+    t.integer   "currency_id"
+    t.integer   "old_balance"
+    t.integer   "new_balance"
+    t.timestamp "created_at"
   end
 
   add_index "balance_changes", ["currency_id"], name: "index_balance_changes_on_currency_id"
 
   create_table "currencies", force: true do |t|
-    t.integer  "exchange_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "deposit_address"
-    t.integer  "balance",         limit: 8
+    t.integer   "exchange_id"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "deposit_address"
+    t.integer   "balance"
+    t.integer   "rate",            limit: 8
+    t.integer   "btc_balance",     limit: 8
   end
 
   add_index "currencies", ["deposit_address"], name: "index_currencies_on_deposit_address"
@@ -36,31 +38,31 @@ ActiveRecord::Schema.define(version: 20141025035957) do
   add_index "currencies", ["name"], name: "index_currencies_on_name"
 
   create_table "exchanges", force: true do |t|
-    t.string   "name"
-    t.string   "api_key"
-    t.string   "api_secret"
-    t.string   "api_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "api_adapter"
-    t.string   "username"
-    t.boolean  "enable_updates"
+    t.string    "name"
+    t.string    "api_key"
+    t.string    "api_secret"
+    t.string    "api_url"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "api_adapter"
+    t.string    "username"
+    t.boolean   "enable_updates"
   end
 
   create_table "orders", force: true do |t|
-    t.integer  "exchange_id"
-    t.integer  "currency_id"
-    t.integer  "market_id"
-    t.boolean  "sell",                  default: false
-    t.integer  "amount",      limit: 8
-    t.integer  "rate",        limit: 8
-    t.integer  "remain",      limit: 8
-    t.integer  "fee",         limit: 8
-    t.string   "internal_id"
-    t.datetime "closed_at"
-    t.boolean  "closed",                default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "exchange_id"
+    t.integer   "currency_id"
+    t.integer   "market_id"
+    t.boolean   "sell",        default: false
+    t.integer   "amount"
+    t.integer   "rate"
+    t.integer   "remain"
+    t.integer   "fee"
+    t.string    "internal_id"
+    t.timestamp "closed_at"
+    t.boolean   "closed",      default: false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "orders", ["closed"], name: "index_orders_on_closed"
@@ -70,11 +72,11 @@ ActiveRecord::Schema.define(version: 20141025035957) do
   add_index "orders", ["market_id"], name: "index_orders_on_market_id"
 
   create_table "trade_pairs", force: true do |t|
-    t.integer  "exchange_id"
-    t.integer  "currency_id"
-    t.integer  "market_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "exchange_id"
+    t.integer   "currency_id"
+    t.integer   "market_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
 end

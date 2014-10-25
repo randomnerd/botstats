@@ -15,4 +15,15 @@ class ExchangeAdapters::Cexio < ExchangeAdapters::Base
       }
     end
   end
+
+  def get_rate(curr)
+    return 1 if curr.upcase == 'BTC'
+    if curr.upcase == 'USD'
+      urate = @client.ticker("BTC/USD").try(:[], 'last').try(:to_f)
+      rate = 1/urate
+    else
+      rate = @client.ticker("#{curr.upcase}/BTC").try(:[], 'last').try(:to_f)
+    end
+    rate || 0
+  end
 end
