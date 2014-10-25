@@ -12,6 +12,7 @@ end
 
 platform :ruby do
   gem 'pg'
+  gem 'oj'
   gem 'unicorn'
 end
 
@@ -63,3 +64,4 @@ end
 gem 'clockwork', :require => false
 gem 'rails_admin', github: 'sferik/rails_admin'
 gem 'quiet_assets'
+gem 'dalli'

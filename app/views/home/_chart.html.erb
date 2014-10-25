@@ -1,0 +1,15 @@
+<% cache(exchange) do %>
+<div id="chart<%= exchange.id %>"></div>
+
+<script>
+  $(document).ready(function() {
+    $('#chart<%= exchange.id %>').highcharts({
+      chart: { type: 'spline' },
+      title: { text: '<%= exchange.name %>' },
+      xAxis: { type: 'datetime' },
+      yAxis: { min: 0 },
+      series: <%= raw exchange.changes_chart_data.to_json %>
+    });
+  });
+</script>
+<% end %>

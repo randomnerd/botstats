@@ -1,14 +1,16 @@
 class ExchangeAdapters::Base
   def update_balances
+    cnt = 0
     get_balances.each do |balance|
       next unless curr = @exchange.currencies.find_by_name(balance['Currency'])
       b = (balance['Balance'] * 10 ** 8).round
-      unless curr.balance == b
-        curr.balance_changes.create(old_balance: curr.balance, new_balance: b)
-        puts "#{curr.full_name} | #{curr.balance.to_f / 10 ** 8} => #{b.to_f / 10 ** 8}"
-        curr.update_attribute :balance, b
-      end
+      next if curr.balance == b
+      curr.balance_changes.create(old_balance: curr.balance, new_balance: b)
+      puts "#{curr.full_name} | #{curr.balance.to_f / 10 ** 8} => #{b.to_f / 10 ** 8}"
+      curr.update_attribute :balance, b
+      cnt += 1
     end
+    @exchange.touch if cnt > 0
   end
 
   def fill_currencies(reset = false)
