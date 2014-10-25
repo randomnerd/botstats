@@ -40,5 +40,6 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.navigation_static_links = { 'Sidekiq' => '/hq/sidekiq'}
   config.excluded_models = %w(BalanceChange TradePair)
 end

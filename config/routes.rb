@@ -2,6 +2,7 @@ require 'sidekiq/pro/web'
 
 Rails.application.routes.draw do
 
+  mount Sidekiq::Web => '/hq/sidekiq'
   mount RailsAdmin::Engine => '/hq', as: 'rails_admin'
   namespace :api, defaults: { format: 'json' } do
     namespace :v2 do
