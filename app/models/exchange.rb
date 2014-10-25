@@ -47,8 +47,9 @@ class Exchange < ActiveRecord::Base
 
   def changes_chart_data
     series = []
-    currencies.order(:name).each do |curr|
-      changes = curr.balance_changes.recent.select(:created_at, :new_balance)
+    data = currencies.includes(:balance_changes).merge(BalanceChange.recent)
+    data.order(:name).each do |curr|
+      changes = curr.balance_changes
       points = changes.map do |bc|
         [ bc.created_at.to_i * 1000, bc.new_balance.to_f / 10 ** 8 ]
       end
