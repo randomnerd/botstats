@@ -65,6 +65,9 @@ GEM
       httparty (~> 0.13, >= 0.13.1)
       json (~> 1.8, >= 1.8.1)
     builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     cexio (0.0.6)
@@ -231,6 +234,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
 
 PLATFORMS
   java
@@ -242,6 +246,7 @@ DEPENDENCIES
   bittrex
   btce
   bter-ruby
+  bullet
   cexio
   clockwork
   coffee-rails (~> 4.0.0)

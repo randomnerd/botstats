@@ -60,6 +60,7 @@ group :development do
   gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
   gem 'sqlite3', platform: :ruby
   gem 'pry'
+  gem 'bullet'
 end
 gem 'clockwork', :require => false
 gem 'rails_admin', github: 'sferik/rails_admin'
