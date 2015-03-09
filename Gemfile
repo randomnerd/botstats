@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source "http://2edaf45f:4e8fa5c0@www.mikeperham.com/rubygems/"
+#source "http://2edaf45f:4e8fa5c0@www.mikeperham.com/rubygems/"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -55,7 +55,7 @@ gem 'cexio'
 gem 'btce'
 gem 'bter-ruby', require: 'bter'
 gem 'sinatra'
-gem 'sidekiq-pro'
+gem 'sidekiq'
 group :development do
   gem 'activerecord-jdbcsqlite3-adapter', platform: :jruby
   gem 'sqlite3', platform: :ruby
@@ -68,3 +68,4 @@ gem 'quiet_assets'
 gem 'dalli'
 gem 'inherited_resources'
 gem 'rabl'
+gem 'httparty'
